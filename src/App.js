@@ -29,7 +29,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route
-            path="/"
+            path="/rickandmorty"
             element={
               <>
                 <input
@@ -44,7 +44,6 @@ function App() {
                   }}
                   style={{ alignSelf: "center" }}
                 />
-
                 <Characters characters={characters} />
                 <Stack spacing={2} style={{ background: "rgb(39, 43, 51)" }}>
                   <Pagination
