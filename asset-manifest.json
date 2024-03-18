@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "//mryunt.github.io/rickandmorty/static/css/main.bd3d4f8c.css",
+    "main.js": "//mryunt.github.io/rickandmorty/static/js/main.9b1c9406.js",
+    "static/js/453.a6b1cea3.chunk.js": "//mryunt.github.io/rickandmorty/static/js/453.a6b1cea3.chunk.js",
+    "static/media/seeb9rh583a71-removebg-preview.png": "//mryunt.github.io/rickandmorty/static/media/seeb9rh583a71-removebg-preview.f05a608f252a511cd7e7.png",
+    "index.html": "//mryunt.github.io/rickandmorty/index.html",
+    "main.bd3d4f8c.css.map": "//mryunt.github.io/rickandmorty/static/css/main.bd3d4f8c.css.map",
+    "main.9b1c9406.js.map": "//mryunt.github.io/rickandmorty/static/js/main.9b1c9406.js.map",
+    "453.a6b1cea3.chunk.js.map": "//mryunt.github.io/rickandmorty/static/js/453.a6b1cea3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd3d4f8c.css",
+    "static/js/main.9b1c9406.js"
+  ]
+}
