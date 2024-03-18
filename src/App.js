@@ -7,20 +7,23 @@ import Stack from "@mui/material/Stack";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CharacterDetail from "./components/CharacterDetail";
-import EpisodeDetail from "./components/EpisodeDetail";
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = React.useState(1);
+  const [search, setSearch] = useState("");
+
   const handleChange = (event, value) => {
     setPage(value);
   };
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
+    fetch(
+      `https://rickandmortyapi.com/api/character/?name=${search}&page=${page}`
+    )
       .then((response) => response.json())
       .then((data) => setCharacters(data.results));
-  }, [page]);
+  }, [page, search]);
   return (
     <Router>
       <div className="App">
@@ -29,6 +32,19 @@ function App() {
             path="/"
             element={
               <>
+                <input
+                  type="search"
+                  placeholder="Search characters"
+                  value={search}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value.match(/^[a-zA-Z]*$/)) {
+                      setSearch(value);
+                    }
+                  }}
+                  style={{ alignSelf: "center" }}
+                />
+
                 <Characters characters={characters} />
                 <Stack spacing={2} style={{ background: "rgb(39, 43, 51)" }}>
                   <Pagination
@@ -48,7 +64,6 @@ function App() {
             }
           />
           <Route path="/character/:id" element={<CharacterDetail />} />
-          <Route path="/episode/:id" element={<EpisodeDetail />} />
         </Routes>
       </div>
     </Router>
