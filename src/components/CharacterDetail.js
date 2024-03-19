@@ -295,7 +295,7 @@ function CharacterDetail() {
           ))}
         </tbody>
       </table>
-      <Link to="/">Back to Home</Link>
+      <Link to="/rickandmorty">Back to Home</Link>
     </div>
   ) : (
     <div>Loading...</div>
