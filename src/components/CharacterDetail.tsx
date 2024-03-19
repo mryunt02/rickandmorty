@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import home from "./seeb9rh583a71-removebg-preview.png";
+import { Character } from "../App";
+type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+};
 
 function CharacterDetail() {
   const { id } = useParams();
-  const [character, setCharacter] = useState(null);
-  const [episodes, setEpisodes] = useState([]);
+  const [character, setCharacter] = useState<Character | null>(null);
+  const [episodes, setEpisodes] = useState<Episode[] | null>([]);
 
   useEffect(() => {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setCharacter(data);
-        return Promise.all(data.episode.map((url) => fetch(url)));
+        return Promise.all(
+          data.episode.map((url: string | URL | Request) => fetch(url))
+        );
       })
       .then((responses) => Promise.all(responses.map((res) => res.json())))
       .then((episodesData) => setEpisodes(episodesData))
@@ -245,57 +254,58 @@ function CharacterDetail() {
           </tr>
         </thead>
         <tbody>
-          {episodes.map((episode) => (
-            <tr key={episode.id}>
-              <td
-                style={{
-                  border: "1px solid #FFFFFF",
-                  padding: "10px",
-                  textAlign: "center",
-                  background: "rgb(103 113 134)",
-                }}
-              >
-                <p
-                  className="newp"
-                  style={{ textDecoration: "none", color: "#FFFFFF" }}
+          {episodes &&
+            episodes.map((episode) => (
+              <tr key={episode.id}>
+                <td
+                  style={{
+                    border: "1px solid #FFFFFF",
+                    padding: "10px",
+                    textAlign: "center",
+                    background: "rgb(103 113 134)",
+                  }}
                 >
-                  {episode.id}
-                </p>
-              </td>
-              <td
-                className="paragraf"
-                style={{
-                  borderBottom: "1px solid #FFFFFF",
-                  borderRight: "1px solid #FFFFFF",
-                  padding: "10px",
-                  width: "200px",
-                }}
-              >
-                {episode.name}
-              </td>
-              <td
-                className="paragraf"
-                style={{
-                  borderBottom: "1px solid #FFFFFF",
-                  borderRight: "1px solid #FFFFFF",
-                  padding: "10px",
-                  width: "200px",
-                }}
-              >
-                {episode.air_date}
-              </td>
-              <td
-                className="paragraf"
-                style={{
-                  borderBottom: "1px solid #FFFFFF",
-                  borderRight: "1px solid #FFFFFF",
-                  padding: "10px",
-                }}
-              >
-                {episode.episode}
-              </td>
-            </tr>
-          ))}
+                  <p
+                    className="newp"
+                    style={{ textDecoration: "none", color: "#FFFFFF" }}
+                  >
+                    {episode.id}
+                  </p>
+                </td>
+                <td
+                  className="paragraf"
+                  style={{
+                    borderBottom: "1px solid #FFFFFF",
+                    borderRight: "1px solid #FFFFFF",
+                    padding: "10px",
+                    width: "200px",
+                  }}
+                >
+                  {episode.name}
+                </td>
+                <td
+                  className="paragraf"
+                  style={{
+                    borderBottom: "1px solid #FFFFFF",
+                    borderRight: "1px solid #FFFFFF",
+                    padding: "10px",
+                    width: "200px",
+                  }}
+                >
+                  {episode.air_date}
+                </td>
+                <td
+                  className="paragraf"
+                  style={{
+                    borderBottom: "1px solid #FFFFFF",
+                    borderRight: "1px solid #FFFFFF",
+                    padding: "10px",
+                  }}
+                >
+                  {episode.episode}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <Link to="/rickandmorty">Back to Home</Link>

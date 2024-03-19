@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Characters.css";
+import { Character } from "../App";
 
-function Characters({ characters }) {
+interface CharacterProps {
+  characters: Character[];
+}
+
+const Characters: React.FC<CharacterProps> = ({ characters }) => {
   return (
     <>
       <div
@@ -181,6 +186,6 @@ function Characters({ characters }) {
       </div>
     </>
   );
-}
+};
 
 export default Characters;

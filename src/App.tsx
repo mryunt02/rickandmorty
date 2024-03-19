@@ -5,15 +5,32 @@ import Characters from "./components/Characters";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import CharacterDetail from "./components/CharacterDetail";
-
+export type Character = {
+  id: number;
+  image: string;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  origin: {
+    name: string;
+  };
+  location: {
+    name: string;
+  };
+  gender: string;
+};
 function App() {
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [page, setPage] = React.useState(1);
   const [search, setSearch] = useState("");
 
-  const handleChange = (event, value) => {
+  const handleChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ): void => {
     setPage(value);
   };
 
@@ -29,7 +46,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route
-            path="/rickandmorty"
+            path="/"
+            element={<Link to="/rickandmorty">Welcome to Rick and Morty</Link>}
+          />
+          <Route
+            path="rickandmorty"
             element={
               <>
                 <input
