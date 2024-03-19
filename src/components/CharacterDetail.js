@@ -21,7 +21,10 @@ function CharacterDetail() {
 
   return character ? (
     <div style={{ background: "rgb(39, 43, 51)" }}>
-      <Link to="/" style={{ display: "flex", justifyContent: "center" }}>
+      <Link
+        to="/rickandmorty"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
         <img
           src={home}
           alt="home"
